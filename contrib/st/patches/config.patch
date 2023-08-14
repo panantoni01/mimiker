@@ -1,0 +1,75 @@
+Index: st/st/config.def.h
+===================================================================
+--- st.orig/st/config.def.h	2023-08-14 17:08:36.917215078 +0200
++++ st/st/config.def.h	2023-08-14 17:12:14.730553952 +0200
+@@ -1,5 +1,9 @@
+ /* See LICENSE file for copyright and license details. */
+ 
++static const char *fb_dev = "/dev/fb0";
++static const char *ev_dev = "/dev/input/event0";
++static const char *font_file = "/etc/spleen-8x16.fnt";
++
+ /*
+  * appearance
+  *
+@@ -94,42 +98,30 @@
+ unsigned int tabspaces = 8;
+ 
+ /* Terminal colors (16 first used in escape sequence) */
+-static const char *colorname[] = {
+-	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
+-
+-	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
+-
+-	[255] = 0,
+-
+-	/* more colors can be added after 255 to use with DefaultXX */
+-	"#cccccc",
+-	"#555555",
+-	"gray90", /* default foreground colour */
+-	"black", /* default background colour */
++static const unsigned colors[] = {
++	[0x0] = 0x000000,
++	[0x1] = 0xaa0000,
++	[0x2] = 0x00aa00,
++	[0x3] = 0xaa5500,
++	[0x4] = 0x0000aa,
++	[0x5] = 0xaa00aa,
++	[0x6] = 0x00aaaa,
++	[0x7] = 0xaaaaaa,
++	[0x8] = 0x555555,
++	[0x9] = 0xff5555,
++	[0xA] = 0x55ff55,
++	[0xB] = 0xffff55,
++	[0xC] = 0x5555ff,
++	[0xD] = 0xff55ff,
++	[0xE] = 0x55ffff,
++	[0xF] = 0xffffff
+ };
+ 
+-
+ /*
+  * Default colors (colorname index)
+  * foreground, background, cursor, reverse cursor
+  */
+-unsigned int defaultfg = 258;
++unsigned int defaultfg = 268;
+ unsigned int defaultbg = 259;
+ unsigned int defaultcs = 256;
+ static unsigned int defaultrcs = 257;
